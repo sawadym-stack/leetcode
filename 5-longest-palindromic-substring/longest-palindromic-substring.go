@@ -17,7 +17,6 @@ func longestPalindrome(s string) string {
         // Odd length palindrome: "aba"
         l1, r1 := expand(i, i)
 
-        // Even length palindrome: "abba"
         l2, r2 := expand(i, i+1)
 
         if r1-l1 > end-start {
