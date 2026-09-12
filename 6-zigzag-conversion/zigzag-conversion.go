@@ -9,10 +9,8 @@ func convert(s string, numRows int) string {
 
 	for i := 0; i < numRows; i++ {
 		for j := 0; j+i < n; j += cycleLen {
-			// vertical
 			result = append(result, s[j+i])
 
-			// diagonal (only middle rows)
 			if i != 0 && i != numRows-1 && j+cycleLen-i < n {
 				result = append(result, s[j+cycleLen-i])
 			}
