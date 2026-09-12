@@ -10,7 +10,7 @@ func threeSumClosest(nums []int, target int) int {
 		for left < right {
 			sum := nums[i] + nums[left] + nums[right]
 
-			// update closest
+		
 			if abs(sum-target) < abs(closest-target) {
 				closest = sum
 			}
@@ -20,7 +20,7 @@ func threeSumClosest(nums []int, target int) int {
 			} else if sum > target {
 				right--
 			} else {
-				return sum // exact match
+				return sum 
 			}
 		}
 	}
