@@ -1,29 +1,22 @@
 func convert(s string, numRows int) string {
-    if numRows == 1 || len(s) <= numRows {
+    if numRows == 1 {
 		return s
 	}
 
-	rows := make([][]byte, numRows)
-	currRow := 0
-	goingDown := false
+	n := len(s)
+	cycleLen := 2 * (numRows - 1)
+	result := make([]byte, 0, n)
 
-	for i := 0; i < len(s); i++ {
-		rows[currRow] = append(rows[currRow], s[i])
+	for i := 0; i < numRows; i++ {
+		for j := 0; j+i < n; j += cycleLen {
+			// vertical
+			result = append(result, s[j+i])
 
-		if currRow == 0 || currRow == numRows-1 {
-			goingDown = !goingDown
+			// diagonal (only middle rows)
+			if i != 0 && i != numRows-1 && j+cycleLen-i < n {
+				result = append(result, s[j+cycleLen-i])
+			}
 		}
-
-		if goingDown {
-			currRow++
-		} else {
-			currRow--
-		}
-	}
-
-	result := make([]byte, 0, len(s))
-	for _, row := range rows {
-		result = append(result, row...)
 	}
 
 	return string(result)
